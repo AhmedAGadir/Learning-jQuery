@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery Crash Course | Events</title>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script>
+		$('document').ready(function() {
+
+			$('#btn1').click(function() {
+				alert('button clicked')
+			})
+
+			$('#btn1').on('click', function() {
+				alert('button clicked')
+			})
+
+			$('#btn1').on('click', function() {
+				$('.para1').hide();
+			})
+
+			$('#btn2').on('click', function() {
+				$('.para1').show();
+			})
+
+			$('#btn1').on('click', function() {
+				$('.para1').toggle();
+			})
+
+			$('#btn1').on('dblclick', function() {
+				$('.para1').toggle();
+			})
+
+			// shorthand for mouseenter and mouseleave events
+			$('#btn1').hover(function() {
+				$('.para1').toggle();
+			})
+
+
+			$('#btn2').on('mouseenter', function() {
+				$('.para1').hide();
+			})
+
+			$('#btn2').on('mouseleave', function() {
+				$('.para1').show();
+			})
+
+			$('#btn2').on('mousemove', function() {
+				$('.para1').toggle();
+			})
+
+			$('#btn2').on('mousedown', function() {
+				$('.para1').toggle();
+			})
+
+			$('#btn2').on('mouseup', function() {
+				$('.para1').toggle();
+			})
+
+			$('#btn1').on('click', function(e) {
+				console.log(
+					e.currentTarget.id, 
+					e.currentTarget.className, 
+					e.currentTarget.innerHTML,
+					e.currentTarget.outerHTML
+				)
+			})
+
+			$(document).on('mouseover', function(e) {
+				console.log('Coords: Y: ' + e.clientY + '  X: ' + e.clientX)
+			})
+
+			$(document).on('mouseover', function(e) {
+				// .append adds on
+				// $('#cords').append()
+
+				$('#cords').html('Coords: Y: ' + e.clientY + ' X: ' + e.clientX)
+			})
+
+			$('input').focus(function() {
+				//alert('focus')
+				$(this).css('background', 'pink')
+			});
+
+			$('input').blur(function() {
+				//alert('focus')
+				$(this).css('background', '#fff')
+			});
+
+			$('input').keyup(function(e) {
+				console.log(e.target.value)
+			})
+
+			$('select#gender').change(function(e) {
+				console.log(e.target.value)
+			})
+
+			$('form').submit(function(e) {
+				e.preventDefault();
+				console.log(e.target.value)
+
+				var name = $('input#name').val();
+				console.log(name)
+			})
+
+		})
+
+	</script>
+
+
+
+	<style type="text/css">
+		body {
+			font-size: 17px;
+			font-family: arial;
+			background-color: lightgrey;
+			line-height: 1.5;
+		}
+		header {
+			background: #333;
+			color: #fff;
+			padding: 20px;
+			text-align: center;
+			border-bottom: 4px solid black;
+			margin-bottom: 10px;
+		}
+		#container {
+			width: 90%;
+			margin: auto;
+			padding: 10px;
+
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<h1>jQuery Crash Course</h1>
+	</header>
+	<div id="container">
+		<h3>Mouse Events</h3>
+		<button id="btn1" class="btn-class">Button 1</button>
+		<button id="btn2">Button 2</button>
+		<p class="para1">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		<h1 id="cords"></h1>
+		<hr/>
+		<form>
+			<label>Name</label><br/>
+			<input type="text" id="name" name="name">
+			<br/>
+			<label>Email</label><br/>
+			<input type="email" id="email" name="email">
+			<br/>
+			<label>Genger</label><br/>
+			<select id="gender" name="gender">
+				<option value="male">Male</option>
+				<option value="female">Female</option>
+			</select>
+			<br/>
+			<input type="submit" name="Submit">
+			<label>Name</label><br/>
+			<input type="text" id="name" name="name">
+			<br/>
+		</form>
+
+	</div>
+
+
+</body>
+</html>
