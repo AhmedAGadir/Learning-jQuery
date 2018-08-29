@@ -82,9 +82,13 @@
 				$(this).css('background', 'pink')
 			});
 
-			$('input').blur(function() {
+			$('input').blur(function (e) {
 				//alert('focus')
-				$(this).css('background', '#fff')
+				// I remember reading in YDKJS how some libraries obscure the this keyword in event handlers
+				// in standard JS the following wouldnt work
+				// $(this).css('background', '#fff')
+				//this is better
+				 $(e.currentTarget).css('background', 'blue')
 			});
 
 			$('input').keyup(function(e) {
